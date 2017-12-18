@@ -11,3 +11,10 @@
 
 (defn sum_range [a b c & more]
   (+ a b c (apply + more)))
+
+(def numbers [1 2 3 4 5 6 7])
+
+(defn multiple
+  ([a b] (* a b))
+  ([a b c & more] (* a b c (apply * more))))
+
