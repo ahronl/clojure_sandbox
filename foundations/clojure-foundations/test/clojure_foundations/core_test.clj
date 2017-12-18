@@ -16,6 +16,9 @@
     (is (= 90 (clojure-foundations.core/multiple 2 5 9)))
 
   (testing "multiple with more than 3 arguments")
-    (is (= 100 (clojure-foundations.core/multiple 2 5 2 5))))
+    (is (= 100 (clojure-foundations.core/multiple 2 5 2 5)))
+
+  (testing "multiple numbers")
+    (is (= 5040 (apply clojure-foundations.core/multiple clojure-foundations.core/numbers))))
 
 
