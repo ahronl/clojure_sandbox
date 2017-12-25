@@ -20,3 +20,13 @@
   ([a b] (* a b))
   ([a b c & more] (* a b c (apply * more))))
 
+
+(def some_object 9)
+
+
+
+
+
+
+
+
