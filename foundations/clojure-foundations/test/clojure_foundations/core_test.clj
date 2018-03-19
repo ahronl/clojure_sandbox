@@ -29,4 +29,3 @@
   (is (= "class clojure.lang.BigInt" (.toString (class (+ clojure-foundations.core/some_object 90000000000000000000000000)))))
   )
 
-
