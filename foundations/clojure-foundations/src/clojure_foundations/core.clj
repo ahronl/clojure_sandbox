@@ -3,19 +3,16 @@
 
 (defn print-coll-asc
 	[vec]
-	(if (empty? vec)
-		(println "done")
-		(do
-			(println (first vec))
-			(print-coll-asc (drop 1 vec)))))
+	(loop [[head & all-the-rest] vec] 
+		(if (= head nil)
+			(println "done")
+			(do 
+				(println head)
+				(recur all-the-rest)))))
 
 (defn print-coll-desc
 	[vec]
-	(if (empty? vec)
-		(println "done")
-		(do 
-			(println (last vec))
-			(print-coll-desc (pop vec)))))
+	(let [v (reverse vec)](print-coll-asc v)))
 
 (defn -main
   "I don't do a whole lot ... yet."
