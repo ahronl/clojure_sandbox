@@ -12,3 +12,8 @@
 		(is (= 0 (clojure-foundations.exercise-1/dec-maker 1)))
 		(is (= 9 (clojure-foundations.exercise-1/dec-maker 10)))
 		(is (- 99 (clojure-foundations.exercise-1/dec-maker 100))))
+
+(deftest mapset-test
+	(testing "mapset apply f on each item in input")
+		(is (= #{2 3} (clojure-foundations.exercise-1/mapset inc [1 1 2 2])))
+		(is (= #{0 1} (clojure-foundations.exercise-1/mapset dec [1 1 2 2]))))

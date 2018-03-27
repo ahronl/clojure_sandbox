@@ -6,3 +6,6 @@
 
 (defn dec-maker [num]
 	(- num 1))
+
+(defn mapset [f vec]
+	(set (map f vec)))
