@@ -26,6 +26,5 @@
   (testing "long type")
   (is (= "class java.lang.Long" (.toString (class clojure-foundations.core/some_object))))
 
-  (is (= "class clojure.lang.BigInt" (.toString (class (+ clojure-foundations.core/some_object 90000000000000000000000000)))))
-  )
+  (is (= "class clojure.lang.BigInt" (.toString (class (+ clojure-foundations.core/some_object 90000000000000000000000000))))))
 
