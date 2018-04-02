@@ -60,9 +60,15 @@
 	[validators record]
 	(reduce (fn [is_valid vamp-key] (and is_valid (not-nil? (get record vamp-key)) ((get validators vamp-key)(get record vamp-key)))
 	true	
-	vamp-keys))
+	vamp-keys)))
+
+(defn to_csv
+	"the answer to question number 4"
+	[people]
+	(clojure.string/join "\n" (map (fn [p] (clojure.string/join "," [(:name p) (:glitter-index p)])) people)))
 
 (defn -main
   [& args]
-  (println (get-glitter-names)))
+  (do (println (get-glitter-names))
+  (println (to_csv (glitter-filter 3 (mapify (parse (slurp (clojure.java.io/resource filename)))))))))
   
