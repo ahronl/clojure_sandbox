@@ -6,6 +6,7 @@
 (def filename "suspects.csv")
 
 (def vamp-keys [:name :glitter-index])
+(def validators {:name string?, :glitter-index number?})
 
 (defn str->int
   [str]
@@ -42,8 +43,24 @@
 	(into '() (map (fn [x] (:name x)) glitter)))
 
 (defn get-glitter-names
+	"the answer to question number 1"
 	[]
 	(to-list-of-names (glitter-filter 3 (mapify (parse (slurp (clojure.java.io/resource filename)))))))
+
+(defn append
+	"the answer to question number 2"
+	[suspects suspect]
+	(conj suspect suspects))
+
+(defn not-nil?
+  [val] ((complement nil?) val))
+
+(defn validate
+	"the answer to question number 3"
+	[validators record]
+	(reduce (fn [is_valid vamp-key] (and is_valid (not-nil? (get record vamp-key)) ((get validators vamp-key)(get record vamp-key)))
+	true	
+	vamp-keys))
 
 (defn -main
   [& args]
