@@ -42,10 +42,14 @@
 	[glitter]
 	(into '() (map (fn [x] (:name x)) glitter)))
 
+(defn get-people
+	[]
+	(glitter-filter 3 (mapify (parse (slurp (clojure.java.io/resource filename))))))
+
 (defn get-glitter-names
 	"the answer to question number 1"
 	[]
-	(to-list-of-names (glitter-filter 3 (mapify (parse (slurp (clojure.java.io/resource filename)))))))
+	(to-list-of-names (get-people)))
 
 (defn append
 	"the answer to question number 2"
@@ -70,5 +74,5 @@
 (defn -main
   [& args]
   (do (println (get-glitter-names))
-  (println (to_csv (glitter-filter 3 (mapify (parse (slurp (clojure.java.io/resource filename)))))))))
+  (println (to_csv (get-people)))))
   
