@@ -108,5 +108,4 @@
 
 (deftest symmetrize-body-parts-test
 	(testing "symmetrize-body-parts add four boady parts")
-	(is (= full-hobbit-body-parts (clojure-foundations.exercise-1/make-body-parts asym-hobbit-body-parts))))
-
+	(is (= full-hobbit-body-parts (clojure-foundations.exercise-1/make-body-parts asym-hobbit-body-parts 5))))

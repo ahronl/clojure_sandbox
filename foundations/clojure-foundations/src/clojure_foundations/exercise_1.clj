@@ -10,10 +10,14 @@
 (defn mapset [f vec]
 	(set (map f vec)))
 
+(defn multiply_by
+	[x]
+	#(repeat x %))
+
 (defn matching-part
-	[part]
+	[part multiplier]
 	(if (re-find #"^left-" (:name part))
-		(repeat 5 {:name (clojure.string/replace (:name part) #"^left-" "")
+		(multiplier {:name (clojure.string/replace (:name part) #"^left-" "")
    					:size (:size part)})
 		[{:name (:name part)
    					:size (:size part)}]
@@ -21,8 +25,8 @@
 
 (defn make-body-parts
   "Expects a seq of maps that have a :name and :size"
-  [asym-body-parts]
-  (reduce (fn [final-body-parts part]
-            (into final-body-parts (matching-part part)))
+  [asym-body-parts num-of-parts]
+  (reduce (fn [parts part]
+            (into parts (matching-part part (multiply_by num-of-parts))))
           []
           asym-body-parts))
