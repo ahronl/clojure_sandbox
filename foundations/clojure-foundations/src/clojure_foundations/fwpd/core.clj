@@ -1,3 +1,5 @@
+;run using this command ==>lein run -m clojure-foundations.fwpd.core
+
 (ns clojure-foundations.fwpd.core
 	(:gen-class))
 
@@ -35,7 +37,15 @@
   [minimum-glitter records]
   (filter #(>= (:glitter-index %) minimum-glitter) records))
 
+(defn to-list-of-names
+	[glitter]
+	(into '() (map (fn [x] (:name x)) glitter)))
+
+(defn get-glitter-names
+	[]
+	(to-list-of-names (glitter-filter 3 (mapify (parse (slurp (clojure.java.io/resource filename)))))))
+
 (defn -main
   [& args]
-  (println (glitter-filter 3 (mapify (parse (slurp (clojure.java.io/resource filename)))))))
+  (println (get-glitter-names)))
   
