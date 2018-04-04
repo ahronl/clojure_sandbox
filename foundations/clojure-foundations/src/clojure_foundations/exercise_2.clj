@@ -2,5 +2,11 @@
   (:gen-class))
 
 (defn attr
-	[item get-fn]
-	(:attributes (get-fn item)))
+	;question #1
+	[name]
+	(comp name :attributes))
+
+(defn two-comp
+  [f g & others]
+  (fn [& args]
+    (f (apply g args))))
