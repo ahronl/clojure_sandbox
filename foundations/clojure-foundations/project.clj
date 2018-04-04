@@ -7,4 +7,4 @@
   :main ^:skip-aot clojure-foundations.core
   :target-path "target/%s"
   :resource-paths ["src/clojure_foundations/fwpd/resources"]
-  :profiles {:uberjar {:aot [clojure-foundations.core clojure-foundations.fwpd.core]}})
+  :profiles {:uberjar {:aot [clojure-foundations.core clojure-foundations.fwpd.core clojure-foundations.peg-thing-game.core]}})
