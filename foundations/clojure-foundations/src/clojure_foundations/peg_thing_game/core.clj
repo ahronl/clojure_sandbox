@@ -1,3 +1,4 @@
+;run ==> lein run -m clojure-foundations.peg-thing-game.core
 (ns clojure-foundations.peg-thing-game.core
   (require [clojure.set :as set])
   (:gen-class))
