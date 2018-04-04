@@ -7,6 +7,13 @@
 	(comp name :attributes))
 
 (defn two-comp
-  [f g & others]
-  (fn [& args]
-    (f (apply g args))))
+	([f g]
+		(fn [& args]
+			(f (apply g args)))))
+
+(defn new-comp
+	;question #2
+  ([f] f)
+  ([f & fs]
+  (fn [& args] 
+  	(f (apply (apply new-comp fs) args)))))
