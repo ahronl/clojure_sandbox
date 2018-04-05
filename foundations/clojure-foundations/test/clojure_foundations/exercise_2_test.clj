@@ -18,5 +18,10 @@
 
 (deftest assoc-in-test
 	(testing "assoc-in-test")
-	(is (= [{:name "James", :age 26} {:name "John", :age 44}] (assoc-in users [1 :age] 44)))
+	(is (= [{:name "James", :age 26} {:name "John", :age 44}] (clojure-foundations.exercise-2/new-assoc-in users [1 :age] 44)))
 	(is (= [{:name "James", :age 26} {:name "John", :age 43} {:name "Jack", :age 19}] (clojure-foundations.exercise-2/new-assoc-in users [2] {:name "Jack" :age 19}))))
+
+(deftest update-in-test
+	(testing "update-in-test")
+	(is (= [{:name "James", :age 27} {:name "John", :age 43}] (update-in users [0 :age] inc)))
+	(is (= [{:name "James", :age 26} {:name "John", :age 62}] (update-in users [1 :age] + 19))))

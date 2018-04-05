@@ -30,4 +30,19 @@
 			(assoc map key val)
 			(assoc map key (new-assoc-in (get map key {}) keys val)))))
 
+(defn new-update-in
+	;question 54
+	[m [k & ks] f & args]
+	(let [
+		map m
+		key k
+		keys ks
+		fn f
+     	args args]
+		(if (empty? keys)
+			(let [conv (partial fn (get map key))]
+				(assoc map key (apply conv args)))
+			(let [updater (partial new-update-in (get map key {}) keys fn)]
+				(assoc map key (apply updater args))))))
+
 
