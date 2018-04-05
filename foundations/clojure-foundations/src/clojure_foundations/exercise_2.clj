@@ -21,14 +21,9 @@
 (defn new-assoc-in
 	;question #3
 	[m [k & ks] v]
-	(loop 
-		[map m
-		key k
-		keys ks 
-		val v]
-		(if (empty? keys)
-			(assoc map key val)
-			(assoc map key (new-assoc-in (get map key {}) keys val)))))
+	(if (empty? ks)
+		(assoc m k v)
+		(assoc m k (new-assoc-in (get m k {}) ks v))))
 
 (defn new-update-in
 	;question #5
