@@ -28,16 +28,10 @@
 (defn new-update-in
 	;question #5
 	[m [k & ks] f & args]
-	(let [
-		map m
-		key k
-		keys ks
-		fn f
-     	args args]
-		(if (empty? keys)
-			(let [conv (partial fn (get map key))]
-				(assoc map key (apply conv args)))
-			(let [updater (partial new-update-in (get map key {}) keys fn)]
-				(assoc map key (apply updater args))))))
+	(if (empty? ks)
+		(let [conv (partial f (get m k))]
+			(assoc m k (apply conv args)))
+		(let [updater (partial new-update-in (get m k {}) ks f)]
+			(assoc m k (apply updater args)))))
 
 
