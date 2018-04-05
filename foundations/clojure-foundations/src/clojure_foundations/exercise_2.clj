@@ -29,9 +29,7 @@
 	;question #5
 	[m [k & ks] f & args]
 	(if (empty? ks)
-		(let [conv (partial f (get m k))]
-			(assoc m k (apply conv args)))
-		(let [updater (partial new-update-in (get m k {}) ks f)]
-			(assoc m k (apply updater args)))))
+		(assoc m k (apply f (get m k) args))
+		(assoc m k (apply new-assoc-in (get m k {}) ks f))))
 
 
