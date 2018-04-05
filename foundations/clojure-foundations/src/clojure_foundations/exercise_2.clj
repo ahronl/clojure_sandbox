@@ -21,15 +21,15 @@
 (defn new-assoc-in
 	;question #3
 	[m [k & ks] v]
-	(if (empty? ks)
-		(assoc m k v)
-		(assoc m k (new-assoc-in (get m k {}) ks v))))
+	(if ks
+		(assoc m k (new-assoc-in (get m k {}) ks v))
+		(assoc m k v)))
 
 (defn new-update-in
 	;question #5
 	[m [k & ks] f & args]
-	(if (empty? ks)
-		(assoc m k (apply f (get m k) args))
-		(assoc m k (apply new-assoc-in (get m k {}) ks f))))
+	(if ks
+		(assoc m k (apply new-assoc-in (get m k {}) ks f)))
+		(assoc m k (apply f (get m k) args)))
 
 
