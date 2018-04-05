@@ -31,7 +31,7 @@
 			(assoc map key (new-assoc-in (get map key {}) keys val)))))
 
 (defn new-update-in
-	;question 54
+	;question #5
 	[m [k & ks] f & args]
 	(let [
 		map m
