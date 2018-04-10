@@ -32,7 +32,6 @@
             (println :success)
             (println :failure my-error-name)))
 
-
 (defmacro my-or
   ([] nil)
   ([x] x)
@@ -40,7 +39,13 @@
    `(let [or# ~x]
       (if or# or# (or ~@next)))))
 
-
-
+(defmacro defattrs
+	([] nil)
+	([fn-name attr] 
+	`(def ~fn-name (comp ~attr :attributes)))
+	([fn-name attr & rest]
+		`(do 
+			(defattrs ~fn-name ~attr)
+			(defattrs ~@rest))))
 
 
