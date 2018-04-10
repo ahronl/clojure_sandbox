@@ -3,24 +3,25 @@
 (ns clojure-foundations.concurrency.core
 	(:gen-class))
 
-(def urls ["https://www.bing.com/search?q=" "https://www.bing.com/search?q="])
+(def bing-url "https://www.bing.com/search?q=")
+(def google-url "https://www.bing.com/search?q=") ;google api does not work
 
-(def urls-map {:bing "https://www.bing.com/search?q=" :google "https://www.bing.com/search?q="})
+(defn search-me-ex1 [word]
+ (let [search-result (promise)]
+   (doseq [engine [bing-url google-url]]
+     (future (if-let [search-page (slurp (str engine word))]
+               (deliver search-result search-page))))
+   (println "And the winner is:" @search-result)))
 
-(defn run-search
-	[url word]
-	(slurp (str word url)))
-
-(defn search-me-ex1
-	[word]
-	(map #(run-search word %) urls))
-
-(defn search-me-ex2
-	[word engine]
-	(map #(run-search word %) [(get urls-map engine)]))
+(defn search-me-ex2 [word & engine_names]
+ (let [engines {:bing bing-url :google google-url}
+ 		search-result (promise)]
+   (doseq [eng engine_names]
+     (future (if-let [search-page (slurp (str (get engines eng) word))]
+               (deliver search-result search-page))))
+   (println "And the winner is:" @search-result)))
 
 (defn -main
 	[]
-	(do 
-		(println (search-me-ex1 "clojure"))
-		(println (search-me-ex2 "clojure" :bing))))
+	(search-me-ex1 "clojure")
+	(search-me-ex2 "clojure" :bing))
