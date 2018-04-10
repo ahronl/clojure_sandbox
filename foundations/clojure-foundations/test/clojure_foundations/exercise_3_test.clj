@@ -20,4 +20,14 @@
 (deftest validate-test
   (testing "validate")
     (is (= {} (clojure-foundations.exercise-3/validate order-details order-details-validations)))
-    (is (= {:name '("Please enter a name") :email '("Please enter an email address")} (clojure-foundations.exercise-3/validate empty-order-details order-details-validations))))
+    (is (= {:name '("Please enter a name") :email '("Please enter an email address")} 
+    	(clojure-foundations.exercise-3/validate empty-order-details order-details-validations))))
+
+(def counter (atom 0))
+
+(deftest when-valid-test
+	(testing "when-valid")
+	(is (= 3 (when-valid order-details order-details-validations my-error-name
+            (swap! counter inc)
+            (swap! counter inc)
+            (swap! counter inc)))))

@@ -20,6 +20,14 @@
           {}
           validations))
 
-;(when-valid order-details order-details-validations
-; (println "It's a success!")
-; (render :success))
+(defmacro when-valid
+  "Handle validation more concisely"
+  [to-validate validations errors-name & body]
+  `(let [~errors-name (validate ~to-validate ~validations)]
+     (if (empty? ~errors-name)
+       (do ~@body))))
+
+(macroexpand
+ '(when-valid order-details order-details-validations my-error-name
+            (println :success)
+            (println :failure my-error-name)))
