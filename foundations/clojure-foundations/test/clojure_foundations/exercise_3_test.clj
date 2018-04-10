@@ -1,0 +1,23 @@
+(ns clojure-foundations.exercise-3-test
+  (:require [clojure.test :refer :all]
+            [clojure-foundations.exercise-3 :refer :all]))
+
+(def order-details {:name "my name" :email "my_name@gmail.com"})
+(def empty-order-details {:name "" :email ""})
+(def no-valid-email-order-details {:name "my name" :email "my_name.gmail.com"})
+
+(def order-details-validations
+  {:name
+   ["Please enter a name" not-empty]
+
+   :email
+   ["Please enter an email address" not-empty
+
+    "Your email address doesn't look like an email address"
+    #(or (empty? %) (re-seq #"@" %))]})
+
+
+(deftest validate-test
+  (testing "validate")
+    (is (= {} (clojure-foundations.exercise-3/validate order-details order-details-validations)))
+    (is (= {:name '("Please enter a name") :email '("Please enter an email address")} (clojure-foundations.exercise-3/validate empty-order-details order-details-validations))))
