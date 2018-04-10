@@ -11,7 +11,7 @@
    (doseq [engine [bing-url google-url]]
      (future (if-let [search-page (slurp (str engine word))]
                (deliver search-result search-page))))
-   (println "And the winner is:" @search-result)))
+   	@search-result))
 
 (defn search-me-ex2 [word & engine_names]
  (let [engines {:bing bing-url :google google-url}
@@ -19,9 +19,17 @@
    (doseq [eng engine_names]
      (future (if-let [search-page (slurp (str (get engines eng) word))]
                (deliver search-result search-page))))
-   (println "And the winner is:" @search-result)))
+   	@search-result))
+
+(defn get-urls [word]
+	(let [res-page (search-me-ex1 word)
+		   found (re-seq #"href=\"([^\" ]*)\"" res-page)
+		   urls (map second found)
+		   external-links (filter #(re-find #"http(?s)://" %) urls)]
+		external-links))
 
 (defn -main
 	[]
-	(search-me-ex1 "clojure")
-	(search-me-ex2 "clojure" :bing))
+	(println (str "found ex1: " (search-me-ex1 "clojure")))
+	(println (str "found ex2: " (search-me-ex2 "clojure" :bing)))
+	(println (get-urls "clojure")))
