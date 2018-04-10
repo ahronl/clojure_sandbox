@@ -31,3 +31,16 @@
  '(when-valid order-details order-details-validations my-error-name
             (println :success)
             (println :failure my-error-name)))
+
+
+(defmacro my-or
+  ([] nil)
+  ([x] x)
+  ([x & next]
+   `(let [or# ~x]
+      (if or# or# (or ~@next)))))
+
+
+
+
+

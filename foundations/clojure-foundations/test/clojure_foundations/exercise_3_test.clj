@@ -31,3 +31,14 @@
             (swap! counter inc)
             (swap! counter inc)
             (swap! counter inc)))))
+
+(deftest my-or-test
+	(testing "my-or")
+	(is (= nil (my-or nil)))
+	(is (= false (my-or false)))
+	(is (= true (my-or true)))
+	(is (= true (my-or false true)))
+	(is (= true (my-or true true)))
+	(is (= true (my-or true false false)))
+	(is (= false (my-or false false)))
+	(is (= false (my-or false false false))))
