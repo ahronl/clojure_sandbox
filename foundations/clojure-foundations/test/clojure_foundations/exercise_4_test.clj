@@ -4,5 +4,4 @@
 
 (deftest inc-my-atom-value_ten_times-test
   (testing "inc-my-atom-value_ten_times")
-    (is (= nil (clojure-foundations.exercise-4/inc-my-atom-value-ten-times)))
-    (is (= 10 @clojure-foundations.exercise-4/my-atom-value)))
+    (is (= 10 (clojure-foundations.exercise-4/inc-my-atom-value-ten-times))))

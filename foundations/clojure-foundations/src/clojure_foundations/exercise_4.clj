@@ -5,5 +5,6 @@
 
 (defn inc-my-atom-value-ten-times
 	[]
-	(dotimes [n 10]
-		(swap! my-atom-value #(inc %))))
+	(do (dotimes [n 10]
+		(swap! my-atom-value #(inc %)))
+	@my-atom-value))
