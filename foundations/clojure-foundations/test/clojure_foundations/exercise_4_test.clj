@@ -9,3 +9,7 @@
 (deftest get-word-count-from-quotes-test
 	(testing "get-word-count-from-quotes"
 		(println (clojure-foundations.exercise-4/get-word-count-from-quotes 5))))
+
+(deftest heal-test
+	(testing "heal"
+		(clojure-foundations.exercise-4/heal)))

@@ -22,4 +22,22 @@
 			(doseq [futures (map (fn [x] (future (swap! word-count-map (fn [wc] (merge-with + wc (count-the-words (slurp rq-url))))))) (range num))] 
 				((fn [f] @f) futures)))
 		@word-count-map))
+
+(def worrier (ref {:name "conan" :health 15 :health-potion 0}))
+
+(def  healer (ref {:name "healer" :health 40 :health-potion 1 :max-hp 20}))
+
+(defn print-character [chr]
+	(println (str "name : " (:name chr) " health: " (:health chr) " health potion :" (:health-potion chr))))
+
+(defn heal []
+	(do 
+		(print-character @worrier)
+		(print-character @healer)
+	(dosync 
+		(alter healer update-in [:health-potion] dec)
+		(alter worrier update-in [:health] + (:max-hp @healer)))
+	(do 
+		(print-character @worrier)
+		(print-character @healer))))
 		
