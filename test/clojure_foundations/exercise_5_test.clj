@@ -12,3 +12,9 @@
     (is (= "Lucian will howl and murder" (full-moon-behavior-protocal (map->WereWolf {:name "Lucian" :title "CEO of Melodrama"}))))
     (is (= "Lucian will dance" (full-moon-behavior-protocal (map->Dancer {:name "Lucian" :title "CEO of Melodrama"})))))
 
+(deftest Emotions-protocal-test
+	(testing "Emotions protocal")
+	(is (= "what it's all about?" (ask-me-to-think 3)))
+	(is (= "crying....." (ask-me-to-cry 7)))
+	(is (= "no strings attached" (ask-me-to-think "string")))
+	(is (= "still crying....." (ask-me-to-cry "string"))))

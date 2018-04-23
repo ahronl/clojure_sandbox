@@ -31,3 +31,18 @@
     (str name " will dance")))
 
 (full-moon-behavior-protocal (map->WereWolf {:name "Lucian" :title "CEO of Melodrama"}))
+
+(defprotocol Emotions
+	(ask-me-to-think [x] "returns the object thoughts")
+	(ask-me-to-cry [x] "makes the object cry"))
+
+(extend-type java.lang.Object
+  Emotions
+  (ask-me-to-think [x] "what it's all about?")
+  (ask-me-to-cry [x] "crying....."))
+  
+(extend-protocol Emotions
+  java.lang.String
+  (ask-me-to-think [x] "no strings attached")
+  (ask-me-to-cry [x] "still crying....."))
+  
