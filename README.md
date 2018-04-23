@@ -1,32 +1,15 @@
 # clojure-foundations
 
-FIXME: description
+## Description
 
-## Installation
-
-Download from http://example.com/FIXME.
+I started to learn clojure using clojure brave and true toturial
 
 ## Usage
 
-FIXME: explanation
-
-    $ java -jar clojure-foundations-0.1.0-standalone.jar [args]
-
-## Options
-
-FIXME: listing of options this app accepts.
-
-## Examples
-
-...
-
-### Bugs
-
-...
-
-### Any Other Sections
-### That You Think
-### Might be Useful
+# lein test to run all unit tests for clojure brave and true
+# lein run -m clojure-foundations.concurrency.core
+# lein run -m clojure-foundations.fwpd.core
+# lein run -m clojure-foundations.peg-thing-game.core
 
 ## License
 
