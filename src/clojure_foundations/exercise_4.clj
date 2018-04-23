@@ -25,7 +25,7 @@
 
 (def worrier (ref {:name "conan" :health 15 :health-potion 0}))
 
-(def  healer (ref {:name "healer" :health 40 :health-potion 1 :max-hp 20}))
+(def healer (ref {:name "healer" :health 40 :health-potion 1 :max-hp 20}))
 
 (defn print-character [chr]
 	(println (str "name : " (:name chr) " health: " (:health chr) " health potion :" (:health-potion chr))))
@@ -40,4 +40,4 @@
 	(do 
 		(print-character @worrier)
 		(print-character @healer))))
-		
+	
