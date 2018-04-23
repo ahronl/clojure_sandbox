@@ -19,9 +19,9 @@
 
 (deftest validate-test
   (testing "validate")
-    (is (= {} (clojure-foundations.exercise-3/validate order-details order-details-validations)))
+    (is (= {} (validate order-details order-details-validations)))
     (is (= {:name '("Please enter a name") :email '("Please enter an email address")} 
-    	(clojure-foundations.exercise-3/validate empty-order-details order-details-validations))))
+    	(validate empty-order-details order-details-validations))))
 
 (def counter (atom 0))
 

@@ -4,19 +4,19 @@
 
 (deftest add-onehandred-test
   (testing "add-onehandred")
-    (is (= 110 (clojure-foundations.exercise-1/add-onehandred 10))))
+    (is (= 110 (add-onehandred 10))))
 
 
 (deftest dec-maker-test
 	(testing "dec-maker subract one from input")
-		(is (= 0 (clojure-foundations.exercise-1/dec-maker 1)))
-		(is (= 9 (clojure-foundations.exercise-1/dec-maker 10)))
-		(is (- 99 (clojure-foundations.exercise-1/dec-maker 100))))
+		(is (= 0 (dec-maker 1)))
+		(is (= 9 (dec-maker 10)))
+		(is (- 99 (dec-maker 100))))
 
 (deftest mapset-test
 	(testing "mapset apply f on each item in input")
-		(is (= #{2 3} (clojure-foundations.exercise-1/mapset inc [1 1 2 2])))
-		(is (= #{0 1} (clojure-foundations.exercise-1/mapset dec [1 1 2 2]))))
+		(is (= #{2 3} (mapset inc [1 1 2 2])))
+		(is (= #{0 1} (mapset dec [1 1 2 2]))))
 
 (def asym-hobbit-body-parts [{:name "head" :size 3}
                              {:name "left-eye" :size 1}
@@ -108,4 +108,4 @@
 
 (deftest symmetrize-body-parts-test
 	(testing "symmetrize-body-parts add four boady parts")
-	(is (= full-hobbit-body-parts (clojure-foundations.exercise-1/make-body-parts asym-hobbit-body-parts 5))))
+	(is (= full-hobbit-body-parts (make-body-parts asym-hobbit-body-parts 5))))
