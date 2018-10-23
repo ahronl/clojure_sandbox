@@ -1,25 +1,25 @@
 (ns print-numbers-as-words.printer
   (:gen-class))
 
-(defn to-words [n]
- (let [smalls ["zero" "one" "two" "three" "four" "five" "six" "seven" "eight" "nine" "ten" "eleven" "twelve" "thirteen" "fourteen" "fifteen" "sixteen" "seventeen" "eighteen" "nineteen"]
-       tens ["twenty" "thirty" "forty" "fifty" "sixty" "seventy" "eighty" "ninety"]
-       magnitudes ["thousand" "million" "billion"]]
+(defn to-words [num]
+ (let [under-twenty ["zero" "one" "two" "three" "four" "five" "six" "seven" "eight" "nine" "ten" "eleven" "twelve" "thirteen" "fourteen" "fifteen" "sixteen" "seventeen" "eighteen" "nineteen"]
+       under-handred ["twenty" "thirty" "forty" "fifty" "sixty" "seventy" "eighty" "ninety"]
+       over-thousand ["thousand" "million" "billion"]]
   (cond
-    (< n 20)
-    (smalls n)
-    (< n 100)
-    (let [t (- (quot n 10) 2) r (rem n 10)]
-      (str (tens t) " " (smalls r)))
-    (< n 1000)
-    (let [h (quot n 100) r (rem n 100)] (str (to-words h) " handred " (if (zero? r) "" (to-words r))))
+    (< num 20)
+     (under-twenty num)
+    (< num 100)
+    (let [uh-index (- (quot num 10) 2) rem-index (rem num 10)]
+      (str (under-handred uh-index) " " (under-twenty rem-index)))
+    (< num 1000)
+    (let [div-num (quot num 100) rem-index (rem num 100)] (str (to-words div-num) " handred " (if (zero? rem-index) "" (to-words rem-index))))
     :else
-    (loop [res [] n n index -1]
-      (if (zero? n) (clojure.string/join " " res)
-          (let [x (rem n 1000)
-                n (quot n 1000)
-                res (if (zero? x) res (cons (if (< -1 index) (str (to-words x) " " (magnitudes index)) (to-words x)) res))]
-            (recur res n (inc index))))))))
+    (loop [items [] num num ot-index -1]
+      (if (zero? num) (clojure.string/join " " items)
+          (let [rem-index (rem num 1000)
+                num (quot num 1000)
+                items (if (zero? rem-index) items (cons (if (< -1 ot-index) (str (to-words rem-index) " " (over-thousand ot-index)) (to-words rem-index)) items))]
+            (recur items num (inc ot-index))))))))
 
 
 
