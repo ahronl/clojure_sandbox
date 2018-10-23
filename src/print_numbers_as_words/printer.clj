@@ -1,4 +1,5 @@
 (ns print-numbers-as-words.printer
+  (:require [clojure.pprint :as pp])
   (:gen-class))
 
 (defn to-words [num]
@@ -26,3 +27,6 @@
                 num (quot num 1000)
                 items (if (zero? rem-key) items (cons (if (< -1 ot-key) (str (to-words rem-key) space (over-thousand ot-key)) (to-words rem-key)) items))]
             (recur items num (inc ot-key))))))))
+    
+(defn to-words-v1 [num]
+  (pp/cl-format nil "~@(~@[~R~]~^ ~A.~)" num))
