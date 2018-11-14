@@ -30,3 +30,5 @@
     
 (defn to-words-v1 [num]
   (pp/cl-format nil "~@(~@[~R~]~^ ~A.~)" num))
+
+(def to-words-v1 190214124)
