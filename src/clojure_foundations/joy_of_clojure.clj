@@ -113,4 +113,32 @@
 (comment (convert simple-metric [3 :km]))
 (comment (convert simple-metric [3 :km 10 :meter 80 :cm 10 :mm]))
 
+;;;GCD recur
+(defn gcd [a b]
+  (if (zero? b)
+    a 
+  (recur b (mod a b))))
+
+(comment (= 21 (gcd 252 105)))
+
+;;a finite state machine
+(defn mk-soldier [x y]
+  {:data {:location {:x x :y y}}
+   :commands {:left (fn [this i]
+                      (update-in this [:data :location :x] #(- % i)))
+              :right (fn [this i]
+                       (update-in this [:data :location :x] #(+ % i)))
+              :up (fn [this i]
+                    (update-in this [:data :location :y] #(+ % i)))
+              :down (fn [this i]
+                      (update-in this [:data :location :y] #(- % i)))}})
+
+(defn move [soldier command & args]
+  (apply (command (:commands soldier)) soldier args))
+
+(-> (mk-soldier 0 0)
+    (move :left 10)
+    (move :up 2)
+    (move :down 3)
+    (move :right 4))
 
