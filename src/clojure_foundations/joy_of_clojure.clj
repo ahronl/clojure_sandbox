@@ -143,3 +143,26 @@
     (move :right 4))
 
 
+(defn elevator [commands]
+  (letfn [(ff-open [[c & r]] #(case c
+                                :close (ff-closed r)
+                                :done true
+                                false))
+          (ff-closed [[c & r]] #(case c
+                                  :open (ff-open r)
+                                  :up (sf-closed r)
+                                  false))
+          (sf-closed [[c & r]] #(case c
+                                  :open (sf-open r)
+                                  :down (ff-closed r)
+                                  false))
+          (sf-open [[c & r]] #(case c
+                                :close (sf-closed r)
+                                :done true
+                                false))]
+    (trampoline ff-open commands)))
+
+(comment (= false (elevator [:close :open :close :up :open :open :done])))
+(comment (= true (elevator [:close :up :open :close :down :open :done])))
+
+
